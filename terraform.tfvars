@@ -1,13 +1,12 @@
-auth_key_name        = "your_auth_key_name"
+key_pair_name        = "hubbit_orchestration_key"
 vpc_cidr             = "10.0.0.0/16"
-ssh_key_path         = "~/.ssh/your_key.pem"
 region               = "ap-northeast-1"
 s3_bucket_name       = "blue-green-terraform-state"
 state_key            = "terraform.tfstate"
-rds_pass             = "your_password"
+rds_pass             = "password"
 rds_size             = "db.t2.small"
 elasticache_size     = "cache.m3.medium"
-ssl_arn              = "your_ssl_arn"
+ssl_arn              = "arn:aws:acm:ap-northeast-1:046984394810:certificate/0796423d-675e-4014-854e-84207d9fe430"
 
 
 web_subnets = {
@@ -26,13 +25,13 @@ availability_zones = {
 }
 
 
-// Blue
+// Blue autoscaling group
 blue_ami              = "ami-374db956"
 blue_instance_type    = "t2.small"
 blue_instances_count  = "2"
 
 
-// Green
+// Green autoscaling group
 green_ami             = "ami-374db956"
 green_instance_type   = "t2.small"
 green_instances_count = "2"

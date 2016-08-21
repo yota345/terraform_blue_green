@@ -1,9 +1,6 @@
-variable "auth_key_name" {}
-variable "ssh_key_path" {}
+variable "key_pair_name" {}
 variable "green_ami" {}
 variable "green_instance_type" {}
-variable "auth_key_name" {}
-variable "ssh_key_path" {}
 variable "ssl_arn" {}
 variable "green_instances_count" {}
 variable "blue_ami" {}
@@ -54,8 +51,7 @@ module "blue" {
   terraform_ec2_security_group  = "${aws_security_group.terraform_ec2_security_group.id}"
   blue_ami                      = "${var.blue_ami}"
   blue_instance_type            = "${var.blue_instance_type}"
-  auth_key_name                 = "${var.auth_key_name}"
-  ssh_key_path                  = "${var.ssh_key_path}"
+  key_pair_name                 = "${var.key_pair_name}"
   blue_instances_count          = "${var.blue_instances_count}"
 
 }
@@ -69,7 +65,6 @@ module "green" {
   terraform_ec2_security_group  = "${aws_security_group.terraform_ec2_security_group.id}"
   green_ami                     = "${var.green_ami}"
   green_instance_type           = "${var.green_instance_type}"
-  auth_key_name                 = "${var.auth_key_name}"
-  ssh_key_path                  = "${var.ssh_key_path}"
+  key_pair_name                 = "${var.key_pair_name}"
   green_instances_count         = "${var.green_instances_count}"
 }

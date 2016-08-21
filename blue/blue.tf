@@ -1,7 +1,6 @@
 variable "blue_ami" {}
 variable "blue_instance_type" {}
-variable "auth_key_name" {}
-variable "ssh_key_path" {}
+variable "key_pair_name" {}
 variable "blue_instances_count" {}
 variable "terraform_subnet_a" {}
 variable "terraform_subnet_b" {}
@@ -13,7 +12,7 @@ resource "aws_launch_configuration" "blue_launch_configuration" {
   image_id                    = "${var.blue_ami}"
   name                        = "blue-launch-configration"
   instance_type               = "${var.blue_instance_type}"
-  key_name                    = "${var.auth_key_name}"
+  key_name                    = "${var.key_pair_name}"
   security_groups             = ["${var.terraform_ec2_security_group}"]
   associate_public_ip_address = true
 
