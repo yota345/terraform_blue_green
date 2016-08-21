@@ -1,8 +1,7 @@
 # terraform_blue_green
 
 ## Description
-This terraform template enables you to construct aws resources.
-With autoscaling the template conduct blue green deployment.
+This terraform template enables you to construct basic blue green architecture on AWS.
 
 
 ## Requirement
@@ -21,6 +20,9 @@ export AWS_SECRET_ACCESS_KEY="your_secret_key"
 export AWS_DEFAULT_REGION="ap-northeast-1"
 ```
 
+Set your environment to terraform.tfvars. 
+You need to override some, for instance, key_pair_name to ssh ec2 instance, ssh_key_path, rds_pass, ssl_arn, and so on.
+
 Load modules.
 ```
 terraform get
@@ -33,14 +35,21 @@ terraform plan -target= -target=module.blue
 
 # Green
 terraform plan -target= -target=module.green
+
+# Blue and Green
+terraform plan -target= -target=module.blue -target=module.green
 ```
 
 Apply your changes.
 ```
 # Blue
 terraform apply -target= -target=module.blue
+
 # Green
 terraform apply -target= -target=module.green
+
+# Blue and Green
+terraform apply -target= -target=module.blue -target=module.green
 ```
 
 Destroy your all aws resources.
@@ -57,7 +66,7 @@ terraform remote config \
     -backend-config="region=ap-northeast-1"
 ```
 
-You could push/pull your tfstate file in S3.
+You could push/pull your tfstate file from/to S3.
 ```
 ## push
 terraform remote push
